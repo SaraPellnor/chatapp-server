@@ -3,17 +3,14 @@ const cors = require("cors");
 const http = require("http"); //http är inbyggt i node
 const { Server } = require("socket.io");
 const app = express();
+
+// Använd cors() här för att hantera CORS-förfrågningar
+app.use(cors());
+
 const server = http.createServer(app);
-const io = new Server(server, {
-  cors: {
-    origin:
-      "https://chatapp-client-n5xj5ow8r-sara-pellnors-projects.vercel.app/",
-  },
-});
+const io = new Server(server);
 
 require("dotenv").config();
-
-app.use(cors());
 
 const API_KEY = process.env.API_KEY;
 
