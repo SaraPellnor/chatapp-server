@@ -3,15 +3,15 @@ const cors = require("cors");
 const http = require("http"); //http är inbyggt i node
 const { Server } = require("socket.io");
 const app = express();
-
-// Använd cors() här för att hantera CORS-förfrågningar
 app.use(cors());
-
 const server = http.createServer(app);
-const io = new Server(server);
+const io = new Server(server, {
+  cors: {
+    origin: "*",
+  },
+});
 
 require("dotenv").config();
-
 const API_KEY = process.env.API_KEY;
 
 // skapar ett set med aktiva rum
